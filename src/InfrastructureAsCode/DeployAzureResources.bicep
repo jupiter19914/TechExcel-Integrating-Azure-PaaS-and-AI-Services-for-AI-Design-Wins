@@ -24,8 +24,8 @@ param restore bool = false
 @description('The email address of the owner of the service')
 @minLength(1)
 param apimPublisherEmail string = 'support@contososuites.com'
-
-var apiManagementServiceName = '${uniqueString(resourceGroup().id)}-apim'
+var prefix = 'apim-'
+var apiManagementServiceName = '${prefix}${uniqueString(resourceGroup().id)}-apim'
 var apimSku = 'Basicv2'
 var apimSkuCount = 1
 var apimPublisherName = 'Contoso Suites'
