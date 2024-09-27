@@ -40,7 +40,16 @@ def main():
     )
 
     # Display the list of hotels as a drop-down list
-    hotels_json = get_hotels().json()
+    response = get_hotels()
+    if response.status_code == 200:
+      try:
+        hotels_json = response.json()
+      except ValueError:
+        print("Invalid JSON received")
+    else:
+      print(f"Error: {response.status_code}")
+
+    # hotels_json = get_hotels().json()
     # Reshape hotels to an object with hotelID and hotelName
     hotels = [{"id": hotel["hotelID"], "name": hotel["hotelName"]} for hotel in hotels_json]
     
